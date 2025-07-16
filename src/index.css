@@ -2,41 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ERP Design System - Professional business interface */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Colors - Professional ERP Theme */
+    --background: 0 0% 98%;
+    --foreground: 215 20% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 20% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 20% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Professional Blue */
+    --primary: 213 94% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 94% 65%;
+    --primary-dark: 213 94% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Neutral Gray */
+    --secondary: 210 11% 96%;
+    --secondary-foreground: 215 20% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 210 11% 96%;
+    --muted-foreground: 215 10% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 11% 96%;
+    --accent-foreground: 215 20% 15%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 70% 95%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 35 91% 62%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 35 91% 95%;
 
+    --destructive: 350 89% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 350 89% 95%;
+
+    --info: 199 95% 55%;
+    --info-foreground: 0 0% 100%;
+    --info-light: 199 95% 95%;
+
+    /* Borders and Inputs */
+    --border: 214 20% 88%;
+    --input: 214 20% 94%;
+    --ring: 213 94% 55%;
+
+    /* Layout */
     --radius: 0.5rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(215 20% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(215 20% 15% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(215 20% 15% / 0.1);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--muted)), hsl(var(--background)));
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease-in-out;
+    --transition-normal: all 0.3s ease-in-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +133,53 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* ERP Component Classes */
+  .erp-card {
+    @apply bg-card border border-border rounded-lg shadow-sm;
+  }
+
+  .erp-button-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-dark;
+    @apply transition-colors duration-200 font-medium;
+  }
+
+  .erp-button-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply border border-border transition-colors duration-200;
+  }
+
+  .erp-status-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .erp-status-paid {
+    @apply bg-success-light text-success;
+  }
+
+  .erp-status-pending {
+    @apply bg-warning-light text-warning;
+  }
+
+  .erp-status-overdue {
+    @apply bg-destructive-light text-destructive;
+  }
+
+  .erp-table-header {
+    @apply bg-muted/50 border-b border-border;
+  }
+
+  .erp-sidebar-active {
+    @apply bg-primary/10 text-primary border-r-2 border-primary;
   }
 }
